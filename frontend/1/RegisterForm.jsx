@@ -21,13 +21,13 @@ class RegisterForm extends React.Component {
     }
     handleNameChange(e) {
         this.setState({
-            confirmPassword: e.target.value
+            name: e.target.value
         });
     }
 
     handleSurnameChange(e) {
         this.setState({
-            email: e.target.value
+            surname: e.target.value
         });
     }
     handleLoginChange(e) {
@@ -65,19 +65,8 @@ class RegisterForm extends React.Component {
                 })
             })
             .then(res => res.json())
-            .then(
-            (result) => {
-                if (result.code === 401) {
-                    alert(result.info);
-                } else {
-                    if (result.type === 'dr') {
-                        this.props.handleViewport(3);
-                    } else { 
-                        this.props.handleViewport(2);
-                    }
-                }
-            }
-            )
+            .then(this.props.handleViewport(0))
+            alert("User registered succesfully");
         } else {
             alert("Passwords does not match!");
         }
@@ -85,19 +74,31 @@ class RegisterForm extends React.Component {
 
   render() {
     return (
-        <div>
-            <div>Welcome to your Amazon Account</div>
-                Name<input value={this.state.email} onChange={this.handleNameChange} />
+        <div class="registerForm">
+            <p>Welcome to Amazon Book Store</p>
+            <ul>
+                <li>Name<input value={this.state.name} onChange={this.handleNameChange} /></li>
+
                 <div style={{'whiteSpace': 'pre-wrap'}}/>
-                Surname<input value={this.state.pesel} onChange={this.handleSurnameChange} />
+
+                <li>Surname<input value={this.state.surname} onChange={this.handleSurnameChange} /></li>
+                
                 <div style={{'whiteSpace': 'pre-wrap'}}/>
-                Login<input value={this.state.login} onChange={this.handleLoginChange} />
+
+                <li>Login<input value={this.state.login} onChange={this.handleLoginChange} /></li>
+
                 <div style={{'whiteSpace': 'pre-wrap'}}/>
-                Password<input value={this.state.password} onChange={this.handlePasswordChange} />
+
+                <li>Password<input type={this.state.hidden ? 'password' : 'text'} value={this.state.password} onChange={this.handlePasswordChange} /></li>
+
                 <div style={{'whiteSpace': 'pre-wrap'}}/>
-                Confirm password<input value={this.state.confirmPassword} onChange={this.handleConfirmPasswordChange} />
+
+                <li>Confirm password<input value={this.state.confirmPassword} onChange={this.handleConfirmPasswordChange} /></li>
+
                 <div style={{'whiteSpace': 'pre-wrap'}}/>
-                <button onClick={this.registerUser}>Register</button>
+            </ul>
+            <button onClick={this.registerUser}>Register</button>
+
         </div>
     );
   }
