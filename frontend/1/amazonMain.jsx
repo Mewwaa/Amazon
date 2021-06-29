@@ -1,20 +1,22 @@
 import React from 'react';
 
-import RegisterForm from './RegisterForm.jsx';
 import LoginForm from './LoginForm.jsx';
+import RegisterForm from './RegisterForm.jsx';
+import Shop from './shop.jsx';
 
 
-class amazonMain extends React.Component { 
+class AmazonMain extends React.Component { 
   constructor(props) { 
     super(props);
     this.state = {
-        viewport: 0,
-        loggedPassword: 'none'
+      bookList : [],
+      viewport: 0,
+      loggedLogin: 'none'
     }
 
     this.serverAddress = 'http://localhost:3001/';
 
-
+    this.setLoggedLogin = this.setLoggedLogin.bind(this);
     this.setloggedPassword = this.setloggedPassword.bind(this);
 
     this.fetchData = this.fetchData.bind(this);
@@ -24,7 +26,9 @@ class amazonMain extends React.Component {
   setloggedPassword(incomingPesel) {
     this.setState({loggedPassword : incomingPesel});
   }
-
+  setLoggedLogin(incomingLogin) {
+    this.setState({loggedLogin : incomingLogin});
+  }
   handleViewport(element) {
     this.setState({ viewport : element})
   }
@@ -57,6 +61,15 @@ class amazonMain extends React.Component {
         handleViewport = {this.handleViewport}
         />
         break;
+      case 2:
+        renderedComponent= <Shop
+        serverAddress = {this.serverAddress}
+        handleViewport = {this.handleViewport}
+        setloggedPassword = {this.setloggedPassword}
+        setLoggedLogin = {this.setLoggedLogin}
+        loggedLogin = {this.state.loggedLogin}
+        />
+        break;
     }
 
     return (
@@ -67,5 +80,5 @@ class amazonMain extends React.Component {
   }
 }
 
-export default amazonMain;
+export default AmazonMain;
 

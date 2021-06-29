@@ -41,6 +41,17 @@ class LoginForm extends React.Component {
             })
         })
         .then(res => res.json())
+        .then(
+        (result) => {
+            if (result.code === 401) {
+                alert(result.info);
+            } else {
+                this.props.setloggedPassword(this.state.password);
+                console.log(this.props.loggedPassword)
+                this.props.handleViewport(2);
+            }
+        }
+        )
     }
 
     register(e){
