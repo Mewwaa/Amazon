@@ -1,0 +1,37 @@
+.ui.menu .item img.logo {
+    margin-right: 1.5em;
+}
+
+.main.container {
+    margin-top: 5em;
+}
+
+ul.ui.list li:before {
+    display: none;
+    content: '';
+}
+
+.header {
+    color: #beaae4;
+}
+
+div{
+    color: #8163ba;
+    background-color: #c3b1e2;
+}
+
+.loginDiv{
+    color:#beaae4;
+    margin: '10px';
+    padding-bottom: "10px";
+    width: "200px"
+}
+
+.Login{
+    padding-bottom: "10px";
+    width: "200px"
+}
+
+.headingPatient{
+    text-align: center;
+}
